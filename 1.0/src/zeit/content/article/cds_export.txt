@@ -1,0 +1,138 @@
+==========================================
+Exporting to the Content-Drehscheibe (CDS)
+==========================================
+
+When publishing articles, they are exported to the `Tagesspiegel` if
+the export flag is set. To export the article, it is saved to a
+`gocept.filestore` directory upon publication in the CMS. The
+`zeit.cds` package then is run in a cron job that regularly exports
+the articles in the filestore to the Content-Drehscheibe FTP server.
+
+Setup
+-----
+
+In order to be able to check out and in articles and go through the workflow,
+we need to set up an interaction based on the request: [#functional]_
+
+>>> p = zeit.cms.testing.create_interaction(u'zope.user')
+
+Below we want to use the ``with`` statement, which in Python 2.5 has
+to be imported from ``__future__`` to make function. We've done most
+of the setup in the test setup already, but we still need to do this
+here to enable it:
+
+>>> dummy = with_statement
+
+Now we can check out a test content object that we'll aim to export upon
+publication:
+
+>>> import zeit.cms.repository.interfaces
+>>> import zope.component
+>>> repository = zope.component.getUtility(
+...     zeit.cms.repository.interfaces.IRepository)
+>>> content = repository['online']['2007']['01']['Somalia']
+>>> content
+<zeit.content.article.article.Article object at 0x...>
+
+export_cds flag not set
+-----------------------
+
+When the ``export_cds flag`` is not set, publishing an article will
+have no effect on the cds filestore.
+
+We start out with an empty cds filestore:
+
+>>> import zeit.content.article.cds
+>>> fs = zeit.content.article.cds.get_cds_filestore('cds-export')
+>>> fs.list('new')
+[]
+
+Unset `export_cds`. The inital value is True:
+
+>>> import zeit.content.article.interfaces
+>>> cdswf = zeit.content.article.interfaces.ICDSWorkflow(content)
+>>> cdswf.export_cds
+True
+>>> cdswf.export_cds = False
+
+We want to publish the article. The first step is to set it to
+``urgent`` (this is the easiest way to publish within the workflow
+system):
+
+>>> import zeit.workflow.interfaces
+>>> import zeit.cms.workflow.interfaces
+>>> workflow = zeit.workflow.interfaces.IContentWorkflow(content)
+>>> workflow.urgent = True
+
+Now we can proceed to publish the article:
+
+>>> publish = zeit.cms.workflow.interfaces.IPublish(content)
+>>> publish.publish()
+
+At this point the article is not yet published. We need to run an
+asynchronous task which takes care of that:
+
+>>> import lovely.remotetask.interfaces
+>>> tasks = zope.component.getUtility(
+...     lovely.remotetask.interfaces.ITaskService, 'general')
+>>> tasks.process()
+
+This article by the act of publication will have obtained a uuid:
+
+>>> import zeit.cms.content.interfaces
+>>> zeit.cms.content.interfaces.IUUID(content).id
+'{urn:uuid:347b85e0-0740-4e52-8f62-3192430b0417}'
+
+Since the ``export_cds`` flag wasn't set, the article does not show up
+in the cds filestore:
+
+>>> fs.list('new')
+[]
+
+export_cds flag set to true
+---------------------------
+
+We will now set the ``export_cds`` flag to ``True``:
+
+>>> cdswf = zeit.content.article.interfaces.ICDSWorkflow(content)
+>>> cdswf.export_cds = True
+
+Let's verify it's really set:
+
+>>> print cdswf.export_cds
+True
+
+We now publish the article. The first step is to set it to ``urgent`` (this
+is the easiest way to publish within the workflow system):
+
+>>> workflow = zeit.workflow.interfaces.IContentWorkflow(content)
+>>> workflow.urgent = True
+
+Now we can proceed to publish the article:
+
+>>> publish = zeit.cms.workflow.interfaces.IPublish(content)
+>>> publish.publish()
+
+At this point the article is not yet published. We need to run an asynchronous
+task which takes care of that:
+
+>>> tasks = zope.component.getUtility(
+...     lovely.remotetask.interfaces.ITaskService, 'general')
+>>> tasks.process()
+
+Now, the publish process is finished and the article is published:
+
+>>> workflow.published
+True
+
+Since the ``export_cds`` flag was set for this article, a copy of the
+article can be found in the CDS filestore, ready for FTP-ing to the CDS:
+
+>>> fs.list('new')
+['.../{urn:uuid:347b85e0-0740-4e52-8f62-3192430b0417}.xml']
+
+
+.. [#functional] We need to set the site since we're a functional test:
+
+    >>> import zeit.cms.testing
+    >>> zeit.cms.testing.set_site()

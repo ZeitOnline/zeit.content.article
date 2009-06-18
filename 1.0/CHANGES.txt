@@ -1,0 +1,201 @@
+zeit.content.article changes
+============================
+
+1.8 (2009-06-18)
+----------------
+
+- CDS beim import weniger aggresiv (#5525).
+  
+- Nicht veröffentlichte CDS-Artikel werden jetzt in der Nacht gelöscht.
+
+1.7.9 (2009-05-28)
+------------------
+
+- Abhängigkeiten zu zeit.wysiwyg, zeit.content.infobox,
+  zeit.content.portraitbox und zeit.content.gallery hinzugefügt.
+
+1.7.8 (2009-05-27)
+------------------
+
+- CDS: Wird ein Artikel ein weiteres mal geliefert, und wurde er im CMS
+  geändert, ist dies jetzt eine Warnung und kein Fehler mehr.
+
+1.7.7 (2009-05-20)
+------------------
+
+- Aus der CDS importierte Artikel werden beim Veröffentlichen nicht mehr in die
+  CDS exportiert.
+
+1.7.6 (2009-05-18)
+------------------
+
+- Jetzt wirklich keine eigenen Translationdomain mehr.
+
+1.7.5 (2009-05-18)
+------------------
+
+- »Zum Tagesspiegel exportieren« im Workflowtab ist jetzt initial »an«.
+
+1.7.4 (2009-05-17)
+------------------
+
+- »Zum Tagesspiegel exportieren« jetzt im Workflowtab.
+
+- Unterstützung für Änderungen aus zeit.cms 1.20.1.
+
+1.7.3 (2009-05-15)
+------------------
+
+- Anpassungen für zeit.cms 1.20
+
+- Alle ``test.py`` nach ``tests.py`` umbenannt.
+
+- Keine eigene Translationdomain mehr, Übersetzungen via zeit.locales.
+
+1.7.2 (2009-05-07)
+------------------
+
+- Wenn DAV-Propertys aus dem XML geladen werden, werden leere Propertys
+  ignoriert. Das löst das "None" bei Autoren.
+
+1.7.1 (2009-05-07)
+------------------
+
+- CDS importiert weiter, wenn eine Datei kein gültiges XML beinhaltet.
+
+1.7 (2009-05-07)
+----------------
+
+- Content-Drehscheibe: Kommt ein veränderter Artikel mit der selben UUID noch
+  mal aus der CDS, wird er im CMS überschrieben, wenn er noch nicht verändert
+  wurde.
+
+- Import-Pfade für die CDS sind konfigurierbar.
+
+- Artikel, die aus der CDS importiert wurden, werden nach 2 Tagen gelöscht,
+  wenn sie bis dahin nicht veröffentlich wurden.
+
+1.6.2 (2009-04-22)
+------------------
+
+- Default der paragraphsperpage von 6 auf 7 geaendert.
+
+1.6.1 (2009-04-17)
+------------------
+
+- Tests für ``urn:uuid:...`` Format angepasst.
+
+1.6 (2009-04-17)
+----------------
+
+- Artikel in die Content-Drehscheibe (Tagesspiegel) exportieren (#4968)
+
+- Import von Artikeln aus der Content-Drehscheibe. Diese werden mit einem
+  Tagesspiegel-Icon versehen (#4967).
+
+
+1.5.13 (2009-02-11)
+-------------------
+
+- Aktualisiert auf asynchrone Updates.
+
+1.5.12 (2009-02-09)
+-------------------
+
+- TagesNL per default an.
+
+1.5.11 (2008-12-12)
+-------------------
+
+- Entities in Textareas werden richtig angezeigt (nur Testbrowser).
+
+1.5.10 (2008-11-20)
+-------------------
+
+- Kein Test-Extra
+- Extra SecurityPolicy
+
+1.5.9 (2008-11-17)
+------------------
+
+- Anpassungen für zeit.cms 1.3
+
+1.5.8 (2008-11-10)
+------------------
+
+- Anpassungen für zeit.cms 1.2.6
+
+1.5.7 (2008-10-24)
+------------------
+
+- Bearbeiten von Rezensionen klarer gemacht (bug #4437).
+- Anpassungen für zeit.cms 1.2.4
+- Rezensionsview beim checkin/checkout stabil halten.
+
+1.5.6 (2008-10-13)
+------------------
+
+- Tests sind jetzt unabhängig vom Standardwert des Copyrights bei Bildern.
+
+1.5.5 (2008-10-01)
+------------------
+
+- Article ist ein redaktioneller Inhalt.
+
+1.5.4 (2008-10-01)
+------------------
+
+- Anpassungen an zeit.cms 1.2
+
+1.5.3 (2008-08-26)
+------------------
+
+- Tests nochmal repariert.
+
+1.5.2 (2008-08-26)
+------------------
+
+- Aktualisiert für zope.app.form 3.6.0 und zeit.cms 1.1.6
+
+1.5.1 (2008-08-12)
+------------------
+
+- Aktualisiert für zeit.cms 1.1.5
+
+1.5 (2008-07-29)
+----------------
+
+- "Kommentare erlaubt" ist in den Kern gewandert.
+
+1.4 (2008-06-26)
+----------------
+
+- DailyNL in den Standard-Metadaten (bug #4307).
+
+1.3 (2008-06-23)
+----------------
+
+- Tests auf zeit.cms 0.9.22 angepasst.
+
+1.2 (2008-06-16)
+----------------
+
+- Asset-View refaktoriert: Verwenden des Asset-Supports aus dem Core.
+- "Kommentare zusammenfassen" (bug #3734).
+
+1.1 (2008-05-29)
+----------------
+
+- Compatible with zeit.cms 0.9.16
+
+
+1.0 (2008-05-26)
+----------------
+
+- Removed special "syndicated in" which is done via relations now.
+- Removed special syndication log, which will be done via zeit.objectlog.
+
+0.9.14 (2008-05-20)
+-------------------
+
+- first release after moving article out of zeit.cms core
