@@ -1,6 +1,13 @@
 zeit.content.article changes
 ============================
 
+1.8 (unreleased)
+----------------
+
+- CDS beim import weniger aggresiv (#5525).
+  
+- Nicht veröffentlichte CDS-Artikel werden jetzt in der Nacht gelöscht.
+
 1.7.9 (2009-05-28)
 ------------------
 
