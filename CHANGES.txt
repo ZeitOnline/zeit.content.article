@@ -1,6 +1,12 @@
 zeit.content.article changes
 ============================
 
+1.8.1 (2009-06-19)
+------------------
+
+- Repackaged (setupools/svn 1.6 problem).
+
+
 1.8 (2009-06-18)
 ----------------
 
