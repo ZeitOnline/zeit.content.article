@@ -2,7 +2,7 @@ zeit.content.article changes
 ============================
 
 
-1.9 (unreleased)
+1.9 (2009-08-03)
 ----------------
 
 - Abhängigkeiten zu anderen Paketen reduziert.
