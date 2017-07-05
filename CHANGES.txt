@@ -4,7 +4,7 @@ zeit.content.article changes
 3.23.5 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- ZON-4054: Add marker interfaces for error pages
 
 
 3.23.4 (2017-06-29)
