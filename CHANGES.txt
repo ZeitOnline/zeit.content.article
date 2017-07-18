@@ -1,7 +1,7 @@
 zeit.content.article changes
 ============================
 
-3.24.2 (unreleased)
+3.24.2 (2017-07-18)
 -------------------
 
 - BUG-133: Hide the whole "breaking news" info, not just the retract button
