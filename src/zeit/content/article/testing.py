@@ -36,6 +36,7 @@ product_config = """
   header-module-source file://{base}/edit/tests/header-modules.xml
   citation-layout-source file://{base}/edit/tests/citation-layouts.xml
   box-layout-source file://{base}/edit/tests/box-layouts.xml
+  puzzle-source file://{base}/edit/tests/puzzles.xml
 </product-config>
 """.format(base=pkg_resources.resource_filename(__name__, ''))
 

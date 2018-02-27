@@ -1,5 +1,6 @@
 from zeit.content.article.i18n import MessageFactory as _
 import collections
+import datetime
 import zc.sourcefactory.basic
 import zeit.cms.content.field
 import zeit.content.article.interfaces
@@ -427,3 +428,33 @@ class IBreakingNewsBody(zope.interface.Interface):
 
     article_id = zope.interface.Attribute(
         'The uniqueID of the breaking news article')
+
+
+class Puzzle_Source(zeit.cms.content.sources.SimpleXMLSource):
+
+    product_configuration = 'zeit.content.article'
+    config_url = 'puzzle-source'
+
+
+PUZZLE_SOURCE = Puzzle_Source()
+
+
+class IPuzzleForm(zeit.edit.interfaces.IBlock):
+
+    puzzle_type = zope.schema.Choice(
+        title=_('Puzzle'),
+        required=True,
+        source=PUZZLE_SOURCE)
+
+    year = zope.schema.Int(
+        title=_('Year'),
+        min=datetime.date.today().year,
+        default=datetime.date.today().year,
+    )
+
+    number = zope.schema.Int(
+        title=_('Number'),
+        description=_('Only relevant for puzzles with multiple episodes'),
+        default=1,
+        required=False
+    )
