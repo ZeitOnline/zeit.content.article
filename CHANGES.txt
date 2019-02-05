@@ -1,6 +1,12 @@
 zeit.content.article changes
 ============================
 
+3.43.1 (unreleased)
+-------------------
+
+- ZON-2932: Allow direct drag&drop for embed objects as well
+
+
 3.43.0 (2019-01-11)
 -------------------
 
